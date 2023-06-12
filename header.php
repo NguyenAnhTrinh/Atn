@@ -107,13 +107,13 @@ ob_start();
                         if (isset($_SESSION['UserName'])):
                            // if (isset($_COOKIE['ccusername'])):
                          ?>
-                        <a href ="../simpleweb/Manager.php" class ="nav-link active">
+                        <a href ="Manager.php" class ="nav-link active">
                         Manager    
                         </a>
                         <?php 
                         else:
                         ?>
-                        <a href ="../simpleweb/Manager.php" class ="nav-link active" hidden>
+                        <a href ="Manager.php" class ="nav-link active" hidden>
                         Manager    
                         </a>
                         <?php
@@ -144,8 +144,8 @@ ob_start();
                         else:
                         ?>
                     
-                        <a href ="../simpleweb/login.php" class = "nav-item nav-link" ><i class="bi bi-person-circle"></i>Login,</a>
-                        <a href ="../simpleweb/signup2.php" class = "nav-item nav-link" > Registration</a>
+                        <a href ="login.php" class = "nav-item nav-link" ><i class="bi bi-person-circle"></i>Login,</a>
+                        <a href ="signup2.php" class = "nav-item nav-link" > Registration</a>
                         <?php
                     endif;
                      ?>
