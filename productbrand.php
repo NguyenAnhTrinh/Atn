@@ -8,7 +8,7 @@ require_once 'header.php'
              $c=new connect();
              $dblink = $c->connectToMySQL();
              $Cat_ID = $_GET['id'];
-  $sup =  $_SESSION['sup'];
+              $sup =  $_SESSION['sup'];
 
              $sql= "SELECT * FROM `inventory` i inner join `user` u on i.Uid = u.UserID inner join `shops` s on s.StoreID = u.Store_ID inner join `toys` t on t.ProID = i.ProID where i.StoreID ='$sup' and CatID ='$Cat_ID'";
              $re = $dblink->query($sql);

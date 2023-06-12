@@ -68,7 +68,7 @@
                 $_SESSION['uid'] = $row['UserID'];
                 $_SESSION['sup'] = $row['Store_ID'];
 
-                header("location:homepage.php");
+                header("location:index.php");
             } else {
                 echo "Wrong Username or Password ";
             }
@@ -133,7 +133,7 @@
                 Don't have an account?<a href="signup2.php">Sign up</a>
             </div>
 
-            <a href="homepage.php" style="text-align: center; text-decoration: none; padding-top: 20px;">
+            <a href="index.php" style="text-align: center; text-decoration: none; padding-top: 20px;">
                 <p style="color:black">Back to Homepage <i class="bi bi-box-arrow-left"></i></p>
             </a>
         </div>
