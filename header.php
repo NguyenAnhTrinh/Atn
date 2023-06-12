@@ -60,7 +60,7 @@ ob_start();
     </style>
     <body  style ="">
     <nav class ="navbar navbar-expand-md navbar-dark bg-black" >
-                <a href="homepage.php" class = "navbar-brand">
+                <a href="index.php" class = "navbar-brand">
                     <img src="images/logoATN.jpg" width="60px" height="40px">
                 </a>
                 <button class="navbar-toggler" type = "button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
@@ -68,13 +68,13 @@ ob_start();
                 </button>
                 <div class = "collapse navbar-collapse" id="navbarMain">
                     <div class="navbar-nav">
-                        <a href ="../simpleweb/homepage.php" class ="nav-link active">
+                        <a href ="index.php" class ="nav-link active">
                         Home    
                         </a>
-                        <a href ="../simpleweb/sale.php" class ="nav-link active">
+                        <a href ="sale.php" class ="nav-link active">
                             Sale  
                         </a>
-                        <a href ="../simpleweb/contact.php" class ="nav-link active">
+                        <a href ="contact.php" class ="nav-link active">
                             Contact 
                         </a>
                         <div class="dropdown">
