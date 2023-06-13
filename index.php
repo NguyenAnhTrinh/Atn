@@ -1,22 +1,22 @@
 <?php
 require_once 'header.php'
 ?>
-<baner>
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+<baner height="300px">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div class="carousel-inner">
+                <div class="carousel-inner"  >
                   <div class="carousel-item active">
-                    <img src="images/download.jpg" class="d-block w-100" alt="..." height="150px">
+                    <img src="images/banner2.jpg" class="d-block w-100" alt="..." height="300px">
                   </div>
                   <div class="carousel-item">
-                    <img src="images/images (1).jpg" class="d-block w-100" alt="..." height="150px">
+                    <img src="images/banner3.jpg" class="d-block w-100" alt="..." height="300px">
                   </div>
                   <div class="carousel-item">
-                    <img src="images/images.jpg" class="d-block w-100" alt="..." height="150px">
+                    <img src="images/banner4.webp" class="d-block w-100" alt="..." height="150px">
                   </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
