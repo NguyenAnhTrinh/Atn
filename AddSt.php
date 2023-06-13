@@ -96,7 +96,7 @@
             $sql1 = "INSERT INTO `inventory`( `StoreID`, `ProID`, `quantity`,`Price`, `Uid`,`UpdatePro`)
             Value(?,?,?,?,?,?)";
             $re = $dblink->prepare($sql1);
-            $signu1 = $re->execute(array("$shop", "$ProductName", "$Quantity", "$Price", "$udi", "$Date"));
+            $signu1 = $re->execute(array("$shop", "$ProductName", "$Quantity", "$pricepro", "$udi", "$Date"));
 
 
 
