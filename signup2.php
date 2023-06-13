@@ -129,7 +129,7 @@
                     <option value="audi">Audi</option>
                 </select> -->
                      <button type = "submit" name = "btnRegister" value ="Signup" >Sign Up</button>
-                <a href="homepage.php" style ="text-align: center; text-decoration: none; padding-top: 20px;">
+                <a href="index.php" style ="text-align: center; text-decoration: none; padding-top: 20px;">
                     <p>Back to Homepage <i class="bi bi-box-arrow-left"></i></p>
                 </a>
                  

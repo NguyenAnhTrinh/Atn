@@ -11,7 +11,7 @@ require_once 'header.php'
     margin-bottom : 20px;
     background:rgb(0, 149,246,0.3);
     border:1px solid white;
-    " ><a href ="./AddSt.php">Add Product</a></button>
+    " ><a href ="./AddSt.php">Add to Shop</a></button>
     <table class="table">
         <thead>
             <tr>
