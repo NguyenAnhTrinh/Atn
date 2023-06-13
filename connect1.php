@@ -6,9 +6,9 @@ class connect{
     public $dbname;
     public function __construct(){
         $this->server ="co28d739i4m2sb7j.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";//co28d739i4m2sb7j.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
-        $this->user="dd3ocfsah87lf59a";//tlfmtsvsrevkwg8e
-        $this->password ="bfmy8qjcfj4ocabx";//d42zaablhnmmb5lx
-        $this->dbname ="ggi47sxzfsu1pb3l";//mivo8hytx174ndxi
+        $this->user="ypo715kowc1khfh4";//tlfmtsvsrevkwg8e
+        $this->password ="ulz59ihvitds5y8e";//d42zaablhnmmb5lx
+        $this->dbname ="jlxlvjhd3w0y79g6";//mivo8hytx174ndxigit 
     }
     //option1 mysql
     function connectToMySQL():mysqli{
