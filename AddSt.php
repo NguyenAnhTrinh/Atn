@@ -58,28 +58,12 @@
     $shop =  $_SESSION['sup'];
     $udi = $_SESSION['uid'];
     if (isset($_POST['btnAdd'])) {
-        // $Id = isset($_POST['Id']) ? trim($_POST['Id']) : '';
         $ProductName = isset($_POST['Productname']) ? trim($_POST['Productname']) : '';
-        // $img = isset($_POST['img']) ? trim($_POST['img']) : '';
         $Price = isset($_POST['Price']) ? trim($_POST['Price']) : '';
-        // $Status = isset($_POST['Status']) ? trim($_POST['Status']) : '';
         $Date = date('Y-m-d', strtotime($_POST['txtbirth']));
-        // $Des = isset($_POST['Des']) ? trim($_POST['Des']) : '';
         $Quantity = isset($_POST['Quantity']) ? trim($_POST['Quantity']) : '';
-        // $Cat = isset($_POST['Cat_Id']) ? trim($_POST['Cat_Id']) : '';
-        // $sup = isset($_POST['Sid']) ? trim($_POST['Sid']) : '';
         $pricepro = $Price * 1.5;
-
-
         $result = '';
-        // if ($Id == " ") {
-        //     $result .= "User name lenght must from 4 to 10 characters <br>";
-        //     $_POST['usrName'] = '';
-        // }
-        // if ($Name == " ") {
-        //     $result .= "Password lenght must form 6 to 20 characters<br>";
-        // }
-
         if ($Price == " ") {
             $result .= "Confirm Password is not confirm with password!!!<br>";
         }

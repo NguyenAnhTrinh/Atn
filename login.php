@@ -96,11 +96,6 @@
                 <h1>Login</h1>
                 <input type="text" placeholder="Username" name="usrName" required>
                 <input type="password" placeholder="Password" name="pass" required>
-                <!-- <div style="background:rgb(0, 149,246,0.3);
-                     text-align: center;
-                     padding: 10px;
-                     margin :10px;
-                     border-radius: 5px;" name = "login";>Log in</div> -->
                 <button type="submit" value="Login" name="btnLogin">Login</button>
 
                 <div style="display:flex;

@@ -22,7 +22,6 @@ require_once 'header.php'
                 <th>User</th>
 
                 <th>Actions</th>
-                <!-- <th>Actions</th> -->
             </tr>
         </thead>
         <tbody>
@@ -33,14 +32,13 @@ require_once 'header.php'
     { 
         session_start(); 
     } 
-    // print_r ($_SESSION);
              $dblink = $c->connectToMySQL();
-            //  if (isset($_SESSION['UserName']))
                 $uid = $_SESSION['uid'];
     $sup =  $_SESSION['sup'] ;
 
             //  $dblink = $c->connectToPDO();
-             $sql= "SELECT * FROM `inventory` i inner join `user` u on i.Uid = u.UserID inner join `shops` s on s.StoreID = u.Store_ID inner join `toys` t on t.ProID = i.ProID where i.StoreID = $sup";
+             $sql= "SELECT * FROM `inventory` i inner join `user` u on i.Uid = u.UserID inner join `shops` s on s.StoreID = u.Store_ID 
+             inner join `toys` t on t.ProID = i.ProID where i.StoreID = $sup";
              $re = $dblink->query($sql);
             //  $re->execute(array("$Id"));
              if($re->num_rows>0):
@@ -48,16 +46,10 @@ require_once 'header.php'
             ?>
             <tr>
             
-                <!-- <td><?= $row['pid']?></td> -->
                 <td><?= $row['ProName']?></td>
-                <!-- <td><img src="images/<?= $row['Image']?>" class="card-img-top"  width="15px" height="70px"></td> -->
-
-                <!-- <td><?= $row['Name']?></td> -->
                 <td><?= $row['Price']?> $</td>
                 <td><?= $row['UserName']?> </td>
-                <td><?= $row['UpdatePro']?> </td>
-
-                    
+                <td><?= $row['UpdatePro']?> </td>    
                 </td>
             </tr>
             <?php

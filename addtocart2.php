@@ -67,7 +67,7 @@
                                             </table> 
                                             <hr class="my-4"> 
                                             <div class="pt-5"> 
-                                                <h6 class="mb-0"><a href="homepage.php" class="text-body">Back to shop <i class="bi bi-box-arrow-left me-2"></i></a></h6> 
+                                                <h6 class="mb-0"><a href="index.php" class="text-body">Back to shop <i class="bi bi-box-arrow-left me-2"></i></a></h6> 
                                             </div>
                                             <form action ="addtobill.php">
                                              <input type="submit" value="Buy" name="btnBuy" class ="btn btn-primary" >

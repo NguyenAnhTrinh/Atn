@@ -1,79 +1,541 @@
-<?php
-require_once 'header.php'
-?>
-<baner height="300px">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" >
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner"  >
-                  <div class="carousel-item active">
-                    <img src="images/banner2.jpg" class="d-block w-100" alt="..." height="300px">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/banner3.jpg" class="d-block w-100" alt="..." height="300px">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="images/banner4.webp" class="d-block w-100" alt="..." height="150px">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>  
-        </baner>
-      <article class = "container-fluid">
-        <!-- mac nhat -->
-        <!-- <h1 style ="text-align: center">
-Top 3 highest priced products</h1> -->
-            <div class="row">
-            <?php
-             include_once 'connect1.php';
-             $c=new connect();
-             $dblink = $c->connectToMySQL();
-             $sup = 1;
-             if (isset($_SESSION['UserName'])){
-              $sup =  $_SESSION['sup'];
-             }
-            
-             
-             $sql= "SELECT * FROM `inventory` i inner join `user` u on i.Uid = u.UserID inner join `shops` s on s.StoreID = u.Store_ID inner join `toys` t on t.ProID = i.ProID where i.StoreID = $sup";
-             $re = $dblink->query($sql);
-            //  $row1 =$re->fetch_row();
-            //  echo $row1[2];
-            //  $re->data_seek(0);
-             if($re->num_rows>0):
-                while($row=$re->fetch_assoc()):
-            ?>
-                     
-                
-                  <div class="card col-12 col-sm-6 col-md-4" style="width: 21rem;">
-                  <a href="detail.php?id=<?= $row['ProID']?>" style ="text-decoration: none;">
-                      <img src="images/<?= $row['img']?>" class="card-img-top" alt="..."  width="340" height="150">
-                      <div class="card-body">
-                        <p class="card-text" style="color:black"><?= $row['ProName']?></p>
-                        <a href="detail.php?id=<?= $row['ProID']?>" class="btn btn-primary"><i class="bi bi-cart3"><?= $row['ProPrice']?>$</i></a>
-                      </div>
-                      </a>
-                    </div>
-                    
-                      
-                  <?php
-            endwhile;
-             else:
-             echo "Not found";
-             endif;
-             ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
+<HTML>
+
+ <HEAD>
+
+  <TITLE> New Document </TITLE>
+
+  <META NAME="Generator" CONTENT="EditPlus">
+
+  <META NAME="Author" CONTENT="">
+
+  <META NAME="Keywords" CONTENT="">
+
+  <META NAME="Description" CONTENT="">
+
+  <style>
+
+  html, body {
+
+  height: 100%;
+
+  padding: 0;
+
+  margin: 0;
+
+  background: #000;
+
+}
+
+canvas {
+
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+  </style>
+
+ </HEAD>
+
+
+ <BODY>
+
+  <canvas id="pinkboard"></canvas>
+
+  <script>
+
+  /*
+
+ * Settings
+
+ */
+
+var settings = {
+
+  particles: {
+
+    length:   500, // maximum amount of particles
+
+    duration:   2, // particle duration in sec
+
+    velocity: 100, // particle velocity in pixels/sec
+
+    effect: -0.75, // play with this for a nice effect
+
+    size:      30, // particle size in pixels
+
+  },
+
+};
+
+
+/*
+
+ * RequestAnimationFrame polyfill by Erik Möller
+
+ */
+
+(function(){var b=0;var c=["ms","moz","webkit","o"];for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];window.cancelAnimationFrame=window[c[a]+"CancelAnimationFrame"]||window[c[a]+"CancelRequestAnimationFrame"]}if(!window.requestAnimationFrame){window.requestAnimationFrame=function(h,e){var d=new Date().getTime();var f=Math.max(0,16-(d-b));var g=window.setTimeout(function(){h(d+f)},f);b=d+f;return g}}if(!window.cancelAnimationFrame){window.cancelAnimationFrame=function(d){clearTimeout(d)}}}());
+
+
+/*
+
+ * Point class
+
+ */
+
+var Point = (function() {
+
+  function Point(x, y) {
+
+    this.x = (typeof x !== 'undefined') ? x : 0;
+
+    this.y = (typeof y !== 'undefined') ? y : 0;
+
+  }
+
+  Point.prototype.clone = function() {
+
+    return new Point(this.x, this.y);
+
+  };
+
+  Point.prototype.length = function(length) {
+
+    if (typeof length == 'undefined')
+
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+
+    this.normalize();
+
+    this.x *= length;
+
+    this.y *= length;
+
+    return this;
+
+  };
+
+  Point.prototype.normalize = function() {
+
+    var length = this.length();
+
+    this.x /= length;
+
+    this.y /= length;
+
+    return this;
+
+  };
+
+  return Point;
+
+})();
+
+
+/*
+
+ * Particle class
+
+ */
+
+var Particle = (function() {
+
+  function Particle() {
+
+    this.position = new Point();
+
+    this.velocity = new Point();
+
+    this.acceleration = new Point();
+
+    this.age = 0;
+
+  }
+
+  Particle.prototype.initialize = function(x, y, dx, dy) {
+
+    this.position.x = x;
+
+    this.position.y = y;
+
+    this.velocity.x = dx;
+
+    this.velocity.y = dy;
+
+    this.acceleration.x = dx * settings.particles.effect;
+
+    this.acceleration.y = dy * settings.particles.effect;
+
+    this.age = 0;
+
+  };
+
+  Particle.prototype.update = function(deltaTime) {
+
+    this.position.x += this.velocity.x * deltaTime;
+
+    this.position.y += this.velocity.y * deltaTime;
+
+    this.velocity.x += this.acceleration.x * deltaTime;
+
+    this.velocity.y += this.acceleration.y * deltaTime;
+
+    this.age += deltaTime;
+
+  };
+
+  Particle.prototype.draw = function(context, image) {
+
+    function ease(t) {
+
+      return (--t) * t * t + 1;
+
+    }
+
+    var size = image.width * ease(this.age / settings.particles.duration);
+
+    context.globalAlpha = 1 - this.age / settings.particles.duration;
+
+    context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
+
+  };
+
+  return Particle;
+
+})();
+
+
+/*
+
+ * ParticlePool class
+
+ */
+
+var ParticlePool = (function() {
+
+  var particles,
+
+      firstActive = 0,
+
+      firstFree   = 0,
+
+      duration    = settings.particles.duration;
+
+ 
+
+  function ParticlePool(length) {
+
+    // create and populate particle pool
+
+    particles = new Array(length);
+
+    for (var i = 0; i < particles.length; i++)
+
+      particles[i] = new Particle();
+
+  }
+
+  ParticlePool.prototype.add = function(x, y, dx, dy) {
+
+    particles[firstFree].initialize(x, y, dx, dy);
+
+   
+
+    // handle circular queue
+
+    firstFree++;
+
+    if (firstFree   == particles.length) firstFree   = 0;
+
+    if (firstActive == firstFree       ) firstActive++;
+
+    if (firstActive == particles.length) firstActive = 0;
+
+  };
+
+  ParticlePool.prototype.update = function(deltaTime) {
+
+    var i;
+
+   
+
+    // update active particles
+
+    if (firstActive < firstFree) {
+
+      for (i = firstActive; i < firstFree; i++)
+
+        particles[i].update(deltaTime);
+
+    }
+
+    if (firstFree < firstActive) {
+
+      for (i = firstActive; i < particles.length; i++)
+
+        particles[i].update(deltaTime);
+
+      for (i = 0; i < firstFree; i++)
+
+        particles[i].update(deltaTime);
+
+    }
+
+   
+
+    // remove inactive particles
+
+    while (particles[firstActive].age >= duration && firstActive != firstFree) {
+
+      firstActive++;
+
+      if (firstActive == particles.length) firstActive = 0;
+
+    }
+
+   
+
+   
+
+  };
+
+  ParticlePool.prototype.draw = function(context, image) {
+
+    // draw active particles
+
+    if (firstActive < firstFree) {
+
+      for (i = firstActive; i < firstFree; i++)
+
+        particles[i].draw(context, image);
+
+    }
+
+    if (firstFree < firstActive) {
+
+      for (i = firstActive; i < particles.length; i++)
+
+        particles[i].draw(context, image);
+
+      for (i = 0; i < firstFree; i++)
+
+        particles[i].draw(context, image);
+
+    }
+
+  };
+
+  return ParticlePool;
+
+})();
+
+
+/*
+
+ * Putting it all together
+
+ */
+
+(function(canvas) {
+
+  var context = canvas.getContext('2d'),
+
+      particles = new ParticlePool(settings.particles.length),
+
+      particleRate = settings.particles.length / settings.particles.duration, // particles/sec
+
+      time;
+
+ 
+
+  // get point on heart with -PI <= t <= PI
+
+  function pointOnHeart(t) {
+
+    return new Point(
+
+      160 * Math.pow(Math.sin(t), 3),
+
+      130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
+
+    );
+
+  }
+
+ 
+
+  // creating the particle image using a dummy canvas
+
+  var image = (function() {
+
+    var canvas  = document.createElement('canvas'),
+
+        context = canvas.getContext('2d');
+
+    canvas.width  = settings.particles.size;
+
+    canvas.height = settings.particles.size;
+
+    // helper function to create the path
+
+    function to(t) {
+
+      var point = pointOnHeart(t);
+
+      point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
+
+      point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
+
+      return point;
+
+    }
+
+    // create the path
+
+    context.beginPath();
+
+    var t = -Math.PI;
+
+    var point = to(t);
+
+    context.moveTo(point.x, point.y);
+
+    while (t < Math.PI) {
+
+      t += 0.01; // baby steps!
+
+      point = to(t);
+
+      context.lineTo(point.x, point.y);
+
+    }
+
+    context.closePath();
+
+    // create the fill
+
+    context.fillStyle = '#ea80b0';
+
+    context.fill();
+
+    // create the image
+
+    var image = new Image();
+
+    image.src = canvas.toDataURL();
+
+    return image;
+
+  })();
+
+ 
+
+  // render that thing!
+
+  function render() {
+
+    // next animation frame
+
+    requestAnimationFrame(render);
+
+   
+
+    // update time
+
+    var newTime   = new Date().getTime() / 1000,
+
+        deltaTime = newTime - (time || newTime);
+
+    time = newTime;
+
+   
+
+    // clear canvas
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+   
+
+    // create new particles
+
+    var amount = particleRate * deltaTime;
+
+    for (var i = 0; i < amount; i++) {
+
+      var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+
+      var dir = pos.clone().length(settings.particles.velocity);
+
+      particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
+
+    }
+
+   
+
+    // update and draw particles
+
+    particles.update(deltaTime);
+
+    particles.draw(context, image);
+
+  }
+
+ 
+
+  // handle (re-)sizing of the canvas
+
+  function onResize() {
+
+    canvas.width  = canvas.clientWidth;
+
+    canvas.height = canvas.clientHeight;
+
+  }
+
+  window.onresize = onResize;
+
+ 
+
+  // delay rendering bootstrap
+
+  setTimeout(function() {
+
+    onResize();
+
+    render();
+
+  }, 10);
+
+})(document.getElementById('pinkboard'));
+
+  </script>
+
+   
+  
+<div class="center-text",
+  style="background-color:rgb(0, 0, 0);
+        width: 100%;
+        color: rgb(225, 12, 168);
+        height:100%;
+        font-size: 31px;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5px;
+        text-align: center;">Dang Ngoc Yen</div>
+        <div> 
+            <p style="color: rgb(225, 12, 168) ; font-size: 31px;
+            font-style: italic;text-align: center;margin-top : 0px; "> 
+            <a href="./code.php" style="color: aliceblue;">Click here</a></p> 
             </div>
-      </article>
-      <?php
-      require_once 'footer.php'
-      ?>
+
+ </BODY>
+
+</HTML>
